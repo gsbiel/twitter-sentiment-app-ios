@@ -16,6 +16,7 @@
 		C90BE22123E4FFC700AF5271 /* TextClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C90BE22023E4FFC700AF5271 /* TextClassifier.mlmodel */; };
 		C90BE23523E502BC00AF5271 /* SwifteriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C90BE22B23E5025A00AF5271 /* SwifteriOS.framework */; };
 		C90BE23623E502BC00AF5271 /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C90BE22B23E5025A00AF5271 /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C90BE23923E5050A00AF5271 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90BE23823E5050A00AF5271 /* APIData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		AD9EC66120FE319A002AE9BF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C90BE22023E4FFC700AF5271 /* TextClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TextClassifier.mlmodel; sourceTree = "<group>"; };
 		C90BE22223E5025A00AF5271 /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = ../Swifter/Swifter.xcodeproj; sourceTree = "<group>"; };
+		C90BE23823E5050A00AF5271 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				AD9EC65620FE2EF7002AE9BF /* Assets.xcassets */,
 				AD9EC65820FE2EF7002AE9BF /* LaunchScreen.storyboard */,
 				AD9EC65B20FE2EF7002AE9BF /* Info.plist */,
+				C90BE23823E5050A00AF5271 /* APIData.swift */,
 			);
 			path = Twittermenti;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C90BE23923E5050A00AF5271 /* APIData.swift in Sources */,
 				AD9EC65220FE2EF4002AE9BF /* ViewController.swift in Sources */,
 				C90BE22123E4FFC700AF5271 /* TextClassifier.mlmodel in Sources */,
 				AD9EC65020FE2EF4002AE9BF /* AppDelegate.swift in Sources */,
