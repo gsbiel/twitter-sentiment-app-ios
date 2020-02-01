@@ -32,7 +32,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func predictPressed(_ sender: Any) {
-        
+        fetchTweets()
+    }
+    
+    private func fetchTweets() {
         print(textField.text!)
         // Temos dois clojures abaixo, um que e chamado caso a busca seja bem sucedida e outro que e chamado caso aconteca algum erro
         // count: quantidade de tweets por pagina, o maximo e 100.
@@ -51,39 +54,50 @@ class ViewController: UIViewController {
                 }
             }
             
-            do{
-                // Vamos receber um array com a predicao de cada entrada
-                let predictions = try self.sentimentClassifier.predictions(inputs: tweets)
-                
-                var sentimentalScore = 0
-                for i in 0..<predictions.count {
-                    if predictions[i].label == "Pos"{
-                        sentimentalScore += 1
-                    }else if predictions[i].label  == "Neg"{
-                        sentimentalScore -= 1
-                    }
-                }
-                print(sentimentalScore)
-                // For testing sake, i will not use the main thread to manipulate de UI. But keep in mind that you should use it , once you are trying to change UI elements from inside a clojure, which is a piece of code that runs assinchronously.
-                if sentimentalScore > 20{
-                    self.sentimentLabel.text = "😍"
-                }else if sentimentalScore > 0 {
-                    self.sentimentLabel.text = "😁"
-                }else if sentimentalScore == 0 {
-                    self.sentimentLabel.text = "😐"
-                }else if sentimentalScore > -10 {
-                    self.sentimentLabel.text = "😕"
-                }else if sentimentalScore > -20 {
-                    self.sentimentLabel.text = "😡"
-                }else{
-                    self.sentimentLabel.text = "🤮"
-                }
-                
-            }catch{
-                print(error)
-            }
+            let score = self.makePredictions(for : tweets)
+            self.updateUI(withScore: score)
+            
+            
         }) { (error) in
             print(error)
+        }
+    }
+    
+    private func makePredictions(for tweets : [TextClassifierInput]) -> Int {
+        do{
+            // Vamos receber um array com a predicao de cada entrada
+            let predictions = try self.sentimentClassifier.predictions(inputs: tweets)
+            
+            var sentimentalScore = 0
+            for i in 0..<predictions.count {
+                if predictions[i].label == "Pos"{
+                    sentimentalScore += 1
+                }else if predictions[i].label  == "Neg"{
+                    sentimentalScore -= 1
+                }
+            }
+            return sentimentalScore
+            
+        }catch{
+            print(error)
+            return 0
+        }
+    }
+    
+    private func updateUI(withScore sentimentalScore : Int) {
+        // For testing sake, i will not use the main thread to manipulate de UI. But keep in mind that you should use it , once you are trying to change UI elements from inside a clojure, which is a piece of code that runs assinchronously.
+        if sentimentalScore > 20{
+            self.sentimentLabel.text = "😍"
+        }else if sentimentalScore > 0 {
+            self.sentimentLabel.text = "😁"
+        }else if sentimentalScore == 0 {
+            self.sentimentLabel.text = "😐"
+        }else if sentimentalScore > -10 {
+            self.sentimentLabel.text = "😕"
+        }else if sentimentalScore > -20 {
+            self.sentimentLabel.text = "😡"
+        }else{
+            self.sentimentLabel.text = "🤮"
         }
     }
     
