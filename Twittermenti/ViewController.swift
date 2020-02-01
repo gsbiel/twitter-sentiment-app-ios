@@ -64,6 +64,20 @@ class ViewController: UIViewController {
                     }
                 }
                 print(sentimentalScore)
+                // For testing sake, i will not use the main thread to manipulate de UI. But keep in mind that you should use it , once you are trying to change UI elements from inside a clojure, which is a piece of code that runs assinchronously.
+                if sentimentalScore > 20{
+                    self.sentimentLabel.text = "😍"
+                }else if sentimentalScore > 0 {
+                    self.sentimentLabel.text = "😁"
+                }else if sentimentalScore == 0 {
+                    self.sentimentLabel.text = "😐"
+                }else if sentimentalScore > -10 {
+                    self.sentimentLabel.text = "😕"
+                }else if sentimentalScore > -20 {
+                    self.sentimentLabel.text = "😡"
+                }else{
+                    self.sentimentLabel.text = "🤮"
+                }
                 
             }catch{
                 print(error)
